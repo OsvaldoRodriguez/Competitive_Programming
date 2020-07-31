@@ -62,9 +62,7 @@ int main(){
     ll a, b, n;
     scanf("%lld %lld %lld", &a, &b, &n);
     dxy D = GCD_ext(a, b);
-    if(n % GCD(a, b))
-        printf("-1\n");
-    else{
+    
         printf("%lld %lld %lld\n",D.x, D.y, D.d);
         //encontrando todas sus soluciones
         for(int k = 0; k < 2000; k++){
@@ -75,7 +73,7 @@ int main(){
             printf("%lld %lld %lld\n", x, y, a * x + b * y);
 
         }
-    }
+    
     EjecuteTime;
     return 0;
 }       
