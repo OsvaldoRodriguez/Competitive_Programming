@@ -35,7 +35,7 @@ const double E = 1e-9;
 int v[N];// 0 is prime
 bitset<N> pr; // 0 is prime
 
-void sieve(){
+void sieve(){ //O(n log log n)
     v[0] = v[1] = 1;
     for(int i = 2; i * i < N; i++)
         if(!v[i])
