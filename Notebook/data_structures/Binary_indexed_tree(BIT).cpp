@@ -25,6 +25,7 @@ const ll mod = 1e9 + 7;
 const double E = 1e-9;
 ll A[N], BIT[N];
 int n;
+// n len array
 void update(int pos, int val){ // O(log n)
     for(int i = pos; i <= n; i += i&(-i))
         BIT[i] += val;
