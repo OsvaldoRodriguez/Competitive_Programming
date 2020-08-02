@@ -25,6 +25,16 @@ const ll mod = 1e9 + 7;
 const double E = 1e-9;
 int A[N], ST[20][N];
 int n;
+
+/*
+Complextity
+Space: 
+    build   ->  O(log(n) * n)
+Time:
+    build   ->  O(log (n) * n)
+    query   -> O(1)
+
+*/
 int f(int a, int b){return __gcd(a, b);}
 void build(){
     for(int i = 0; i < n; i++)
