@@ -31,8 +31,6 @@ vi G[N];
 n vetex
 m edges
 Complexity
-Space:
-    bfs ->  O(n + m)
 Time:
     bfs -> O(n + m)
 */
