@@ -31,7 +31,7 @@ void update(int pos, int val){ // O(log n)
         BIT[i] += val;
 }
 
-void build(){ // O(n)
+void build(){ // O(n * log (n))
     for(int i = 1; i <= n; i++)
         update(i, A[i]);
 }
