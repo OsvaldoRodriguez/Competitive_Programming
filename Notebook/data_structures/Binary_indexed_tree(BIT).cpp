@@ -25,18 +25,27 @@ const ll mod = 1e9 + 7;
 const double E = 1e-9;
 ll A[N], BIT[N];
 int n;
-// n len array
-void update(int pos, int val){ // O(log n)
+/*
+n -> len array
+Complexity
+Space:  
+    build   -> O(n)
+Time:
+    update  ->  O(log (n))
+    build   ->  O(n * log (n))
+    getSum  ->  O(log (n))
+*/
+void update(int pos, int val){
     for(int i = pos; i <= n; i += i&(-i))
         BIT[i] += val;
 }
 
-void build(){ // O(n * log (n))
+void build(){
     for(int i = 1; i <= n; i++)
         update(i, A[i]);
 }
 
-ll getSum(int pos){ // O(log n)
+ll getSum(int pos){
     ll ans = 0;
     for(int i = pos; i > 0; i -= i&(-i))
         ans += BIT[i];
