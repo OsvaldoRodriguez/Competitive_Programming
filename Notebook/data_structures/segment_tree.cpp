@@ -23,6 +23,16 @@ typedef vector<ii>  vii;
 const int N = 1 * 1e4 + 5;
 const ll mod = 1e9 + 7;
 const double E = 1e-9;
+
+/*
+Complexity
+Space:  
+    build   ->  O(n)
+Time:
+    build   ->  O(n)
+    update  ->  O(log (n))
+    query   ->  O(log (n))
+*/
 struct SegTree{
     int N_MAX;
     vector<int> ST, A;
