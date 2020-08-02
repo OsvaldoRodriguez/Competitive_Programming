@@ -25,19 +25,19 @@ const ll mod = 1e9 + 7;
 const double E = 1e-9;
 ll A[N][N], BIT[N][N];
 int n, m; 
-void update(int pos_i, int pos_j, int val){
+void update(int pos_i, int pos_j, int val){ // O(log (n) * log (m))
     for(int i = pos_i; i <= n; i += i&(-i))
         for(int j = pos_j; j <= m; j += j&(-j))
             BIT[i][j] += val;
 }
 
-void build(){
+void build(){ // O(n * m * log (n) * log(m))
     for(int i = 1; i <= n; i++)
         for(int j = 1; j <= m; j++)
             update(i, j, A[i][j]);
 }
 
-int sum(int pos_i, int pos_j){
+int sum(int pos_i, int pos_j){ // O(log (n) * log (m))
     int sum = 0;
     for(int i = pos_i; i > 0; i -= i&(-i))
         for(int j = pos_j; j > 0; j -= j&(-j))
