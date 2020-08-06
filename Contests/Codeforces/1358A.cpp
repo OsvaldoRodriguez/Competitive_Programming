@@ -13,7 +13,7 @@
 #define w(t) while(t--)
 #define sz(s) int(s.size())
 #define cls(a,car) memset(a,car,sizeof (a))
-#define ff(x) cerr << #x << " is " << x << '\n'
+#define db(x) cerr << #x << " is " << x << '\n'
 #define FL freopen("in", "r", stdin),freopen("out", "w", stdout);
 #define time cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n"
 #define angle(x) double(x * acos(-1) / 180.0)
@@ -21,7 +21,7 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ii> vii;
-const int N = 2 * 1e5 + 5;
+const int N = 1 * 1e5 + 5;
 const ll mod = 1e9 + 7;
 const int INF = INT_MAX;
 const ll INFCAD  = ll(INT_MAX) * 2 + 1;
@@ -29,7 +29,8 @@ const double E = 1e-9;
 int dx[] = {1, 0, -1, 0}, dy[] = {0, 1, 0, -1};
 // fflush(stdout)
 // cout << flush
-// a + b = a ^ b + 2 * (a & b) 
+// a + b = a ^ b + 2 * (a & b)
+int v[N]; 
 int main(){
     //FL;
     fin;
@@ -38,24 +39,8 @@ int main(){
     w(t){
         int a, b;
         cin >> a >> b;
-        int ans = 0;
-        if(a > b)swap(a, b);
-        if(a == 1)ans = (b + 1) / 2;
-        else if(a == 2){
-            ans = b;
-        }else{
-            if(b & 1)
-                ans = a / 2 * (b - 1);
-            else
-                ans = a / 2 * b;
-            if(a & 1)
-                ans += (b + 1) / 2;
-            if(b & 1)
-                ans += (a + 1) / 2;
-            if((a & 1) && (b & 1))
-                ans--;
-        }   
-        cout << ans << '\n';
+        a *= b;
+        cout << ((a + 1) >> 1) << '\n';
     }
     time;
     return 0;
