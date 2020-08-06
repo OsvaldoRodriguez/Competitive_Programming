@@ -32,18 +32,7 @@ const double E = 1e-9;
 ll LCM(ll a, ll b){
     return a * b / __gcd(a, b);
 }
-ll a11, b11;
-void solv1(ll n){
-    int lcm = 1e9;
-    for(int i = 1; i <= n; i++){
-        //cout << i << " " << n - i << " " << LCM(i, n - i) << '\n';
-        if(lcm > LCM(i, n - i) && i > 0 && n - i > 0){
-            lcm = LCM(i, n - i);
-            a11 = i;
-            b11 = n - i;
-        }
-    }
-}
+
 int main(){
     //FL;
     FIN;
@@ -51,49 +40,29 @@ int main(){
     cin >> t;
     w(t){
         ll n;
-        a11 = -1, b11 = -1;
         cin >> n;
-        //solv1(n);
-        ///cout << '\n';
-        //cout << a11 << " " << b11 << " " <<  LCM(a11, b11) << '\n';
         if(n % 2 == 0)
-            cout << n / 2 << " " << n / 2 << '\n';
+            cout << n / 2 << " " << n / 2 << "\n";
         else{
             ll lcm = 1e9;
             ll auxa = -1, auxb = -1;
             for(ll i = 1; i * i <= n; i++){
                 if(n % i == 0){
-                  //cout << i << " div " << n / i << '\n';
                     if(lcm > LCM(i, n - i) && i > 0 && n - i > 0){
                         lcm = LCM(i, n - i);
                         auxb = n - i;
                         auxa = i;
                     }
-                    ll auxi = LCM(i, n - i);
-                    ll cmp = n - auxi;
-                    if(cmp + auxi == n && cmp > 0 && auxi > 0){
-                        if(lcm > LCM(auxi, cmp)){
-                            lcm = LCM(auxi, cmp);
-                            auxa = auxi;
-                            auxb = cmp;
-                        }
-                    }
+                   
                     if(lcm > LCM(n / i, n - n / i) && (n / i) > 0 && (n - n / i) > 0){
                         auxa = n / i;
                         auxb = n - n / i;
-                    }
-                    auxi = LCM(n / i, n - n / i);
-                    cmp = n - auxi;
-                    if(cmp + auxi == n && cmp > 0 && auxi > 0){
-                        if(lcm > LCM(auxi, cmp)){
-                            lcm = LCM(auxi, cmp);
-                            auxa = auxi;
-                            auxb = cmp;
-                        }
+                        lcm = LCM(n / i, n - n / i);
                     }
                 }   
             }
             cout << auxa << " " << auxb << '\n';
+            
         }
     }
     EjecuteTime;
