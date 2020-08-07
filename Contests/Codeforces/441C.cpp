@@ -20,7 +20,7 @@ using namespace std;
 typedef long long   ll;
 typedef vector<int> vi;
 typedef vector<ii>  vii;
-const int N = 8 * 1e5 + 5;
+const int N = 1 * 1e2 + 50;
 const ll mod = 1e9 + 7;
 const double E = 1e-9;
 //int dx[] = {1, 0}, dy[] = {0, 1};
@@ -33,14 +33,31 @@ const double E = 1e-9;
 int main(){
     //FL;
     FIN;
-    int n, m;
-    cin >> n >> m;
-    cout << min(n, m) + 1 << '\n';
-    int x = 0, y = m;
-    for(int i = 0; i < min(n, m) + 1; i++){
-        cout << x << " " << y << '\n';
-        x++;
-        y--;
+    int n, m, k;
+    cin >> n >> m >> k;
+    vii ans;
+    for(int i = 1; i <= n; i++){
+        if(!(i & 1)){
+            for(int j = m; j >= 1; j--)
+                ans.pb({i, j});
+        }
+        else{
+            for(int j = 1; j <= m; j++)
+                ans.pb({i, j});
+        }
+    }
+    int j = 0;
+    for(int i = 1; i <= k; i++){
+        if(i == k){
+            cout << sz(ans) - j << ' ';
+            while(j < sz(ans)){
+                cout << ans[j].F << ' ' << ans[j].S << ' ';
+                j++;
+            }
+        }else{
+            cout << 2 << " " << ans[j].F << " " << ans[j].S << " " << ans[j + 1].F << " " << ans[j + 1].S << '\n';
+            j += 2;
+        }
     }
     EjecuteTime;
     return 0;
