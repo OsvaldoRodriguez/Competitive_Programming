@@ -33,7 +33,7 @@ const double E = 1e-9;
 // cout << flush
 // a + b = a ^ b + 2 * (a & b)
 int dp[5 * N][1 << 3];
-short v[3][5 * N];
+bool v[3][5 * N];
 int n, m;
 int f(int i, int mask){
     if(i == m)return 0;
@@ -78,33 +78,28 @@ int main(){
     FIN;
     cin >> n >> m;
     char x;
-    if(n > 3){
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < m; j++)
-                cin >> x;
-        cout << -1 << '\n';
-    }
-    else{
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < m; j++){
-                cin >> x;
-                v[i][j] = (x == '1' ? 1 : 0);
-            }
-        
-        if(n == 1){cout << 0 << '\n';return 0;}
-        
-        cls(dp, -1);
-        int ans = 1e9;
-        for(int i = 0; i < (1 << n); i++){
-            int cost = 0;
-            for(int j = 0; j < n; j++){
-                int cur = ((i & (1 << j)) > 0);
-                cost += (v[j][0] != cur);
-            }
-            ans = min(ans, f(1, i) + cost);
+    
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++){
+            cin >> x;
+            if(n <= 3)
+                v[i][j] = (x == '1');
         }
-        cout << ans << '\n';
+    if(n > 3){cout << -1 << '\n';return 0;}
+    if(n == 1){cout << 0 << '\n';return 0;}
+    
+    cls(dp, -1);
+    int ans = 1e9;
+    for(int i = 0; i < (1 << n); i++){
+        int cost = 0;
+        for(int j = 0; j < n; j++){
+            int cur = ((i & (1 << j)) > 0);
+            cost += (v[j][0] != cur);
+        }
+        ans = min(ans, f(1, i) + cost);
     }
+    cout << ans << '\n';
+
     EjecuteTime;
     return 0;
 }       
