@@ -63,8 +63,24 @@ void solve(){
         }
         cost[i] = cos;
     }
-    cls(dp, -1);
-    cout << f(0) << '\n';
+    for(int mask = (1 << n); mask >= 0; mask--){
+        ll &ans = dp[mask];
+        if(__builtin_popcount(mask) == n){
+            ans = 0;
+            continue;
+        }
+        ans = 1e12;
+        for(int i = 0; i < n; i++){
+            int newmask = mask;
+            for(int j = 0; j < 3; j++)
+                newmask |= (1 << ((i + j) % n));
+            
+            if(newmask != mask)
+                ans = min(ans, dp[newmask] + cost[newmask]);
+            
+        }
+    }
+    cout << dp[0] << '\n';
 }  
 int main(){
     FIN;
