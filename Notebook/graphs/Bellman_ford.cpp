@@ -33,7 +33,7 @@ n -> vertex
 m -> edges
 Complexity
 Time:
-    O((n - 1) * m)
+    bellman ->  O((n - 1) * m)
     
 Space:
     O(m)
