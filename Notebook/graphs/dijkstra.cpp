@@ -31,7 +31,7 @@ n vetex
 m edges
 Complexity
 Time:
-    dijkstra -> O((n + m) * log (n))
+    dijkstra -> O(m * log (n))
 */
 priority_queue< pair<ll, int> , vector< pair<ll, int> >, greater<pair<ll, int>>> q;
 void dijkstra(int node){
