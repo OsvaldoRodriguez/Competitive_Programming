@@ -1,4 +1,4 @@
-vector<int> z_function(string &s){
+vector<int> z_function(string &s){ //O(|S|)
     int n = sz(s);
     vector<int> z(n);
     z[0] = 0;//definition
@@ -12,3 +12,10 @@ vector<int> z_function(string &s){
     }
     return z;
 }
+/*
+para hacer string matching 
+s = t + "#" + p;
+t = texto
+p = patron
+"#" = no pertenece al alfabeto
+*/
