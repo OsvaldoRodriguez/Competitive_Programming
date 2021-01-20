@@ -23,24 +23,26 @@ const ll mod = 1e9 + 7;
 const double E = 1e-7;
 vii G[N];
 vi fire; 
-int dis[N];
-void dijkstra(){
+vi dis, _dis;
+void dijkstra(vector<int> &D){
     priority_queue<ii> q;
+    
     for(auto i : fire){
-        dis[i] = 0;
+        D[i] = 0;
         q.push({0, i});
     }
+
     while(sz(q)){
         int u = q.top().S;
         int d = q.top().F;
         q.pop();
-        if(dis[u] < d)continue;
+        if(D[u] < d)continue;
         for(int i = 0; i < sz(G[u]); i++){
             int v = G[u][i].F;
             int cost = G[u][i].S;
-            if(dis[u] + cost < dis[v]){
-                dis[v] = dis[u] + cost;
-                q.push({dis[v], v});
+            if(D[u] + cost < D[v]){
+                D[v] = D[u] + cost;
+                q.push({D[v], v});
             }
         }
     }
@@ -55,10 +57,10 @@ void solve(){
         fire.pb(--x);
     }
     cin.ignore();
-    for(int i = 0; i <= m; i++){
+    dis.assign(m, 1e9);
+    for(int i = 0; i <= m; i++)
         G[i].clear();
-        dis[i] = 1e9;
-    }
+    
     while(getline(cin, str)){
         if(str == "")break;
         vi aux;
@@ -72,18 +74,18 @@ void solve(){
         G[aux[0] - 1].pb({aux[1] - 1, aux[2]});
         G[aux[1] - 1].pb({aux[0] - 1, aux[2]});
     }
-   dijkstra();
+    dijkstra(dis);
+
     int node = -1;
     int mn = 1e9;
     for(int i = 0; i < m; i++){
         fire.pb(i);
-        for(int j = 0; j <= m; j++)
-            dis[j] = 1e9;
-        dijkstra();
+        _dis = dis;
+        dijkstra(_dis);
         fire.pop_back();
         int cur = 0;
         for(int j = 0; j < m; j++)
-            cur = max(cur, dis[j]);
+            cur = max(cur, _dis[j]);
         if(mn > cur){
             node = i;
             mn = cur;
