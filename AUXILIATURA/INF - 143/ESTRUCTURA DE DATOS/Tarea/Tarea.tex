@@ -1,0 +1,41 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\author{Jorge Teran}
+\title{Tarea de Estructura de datos}
+\begin{document}
+\maketitle
+Estamos en una de las carreras más importantes en el ciclismos internacional, el Tur de Francia. Para el seguimiento de los corredores te han dado los varios archivos que vienen con los nombres t1.csv, t2.csv, etc.
+
+Cada uno corresponde a una etapa del tour.  El formato contenido de los archivos es como sigue:
+\begin{verbatim}
+Nombre del corredor
+Numero en la camiseta
+Equipo al que pertenece
+tiempo que demoro en la etapa (ejmplo: 	03h 46' 23'')
+\end{verbatim}
+
+Características que debe tener su  solución:
+
+\begin{enumerate}
+\item Para acceder a los datos individuales de cada registro se debe crear un diccionario que tenga nombre de la columna y posición. No acceder a las columnas direccionando la posición especifica. Ejemplo de direccionamiento correcto dato[equipo]. Ejemplo de direccionamiento incorrecto dato[3].
+\item Los datos se leen a la memoria y almacenan en una estructura donde la clave es el numero de camiseta, y el resto del registro esta asociado a la clave.
+\item No debe existir código repetido. Para esto utilice funciones.
+\end{enumerate}
+
+Se esperan los siguientes resultados:
+
+\begin{enumerate}
+\item Se espera en la salida la tabla de posiciones(primero los con menor tiempo total) con una columna con la diferencia de tiempo con el ganador. Los tiempo en el archivo de salida deben estar en formato de los archivos que se dieron.
+\item Un archivo similar al anterior de todos los que abandonaron la competencia. Esto se sabe porque ya no figuran en las siguientes etapas.
+\end{enumerate}
+
+Para verificar sus resultados puede abrir los resultados con hoja de calculo y ver exactamente como están sus archivos.
+
+Lo que debe entregar es un archivo comprimido en formato ZIP que tenga los archivos de entrada y salida y los programas realizados. Pueden ser en Java, C++ o Python.
+
+\end{document}
