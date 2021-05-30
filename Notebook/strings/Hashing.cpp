@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 struct Hash{
-    //primos 1001265673, 1001864327, 999727999, 1070777777
+    //primos 1001265673, 1001864327, 999727999, 1070777777, 1000003967
     // 33, 331, 997
     ll B, MOD;
     int N_MAX;
