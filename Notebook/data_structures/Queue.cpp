@@ -7,6 +7,11 @@ struct Node{
     Node* next;
     Node(): value(0), next(nullptr){}
     Node(int x): value(x), next(nullptr){}
+    
+    Node(Node *A){
+        value = A -> value;
+        next = A -> next;
+    }
 
     void mostrar(){
         cout << "(" << value << ")";
@@ -34,8 +39,8 @@ struct Queue{
     Node back(){
         return *end;
     }
-
-    void push_back(int x){ // O(1)
+    // puntero Node
+    void push_back(Node *x){ // O(1)
         if(empty()){
             head = new Node(x);
             end = head;
@@ -80,11 +85,15 @@ int main(){
 
     Queue *Q = new Queue();
 
-    Q -> push_back(1);
-    Q -> push_back(2);
-    Q -> push_back(3);
-    Q -> push_back(4);
-    Q -> push_back(10);
+
+    Q -> push_back(new Node(1));
+    Q -> push_back(new Node(3));
+    Q -> push_back(new Node(4));
+    Q -> push_back(new Node(1));
+    Q -> push_back(new Node(10));
+    Q -> push_back(new Node(100));
+    Q -> push_back(new Node(121));
+
 
     cout << Q -> size() << '\n';
     cout << Q -> front().value << " " << Q -> back().value << '\n';
@@ -93,6 +102,8 @@ int main(){
     
     cout << Q -> size() << '\n';
     cout << Q -> front().value << " " << Q -> back().value << '\n';
+    
+    Q -> print();
     return 0;
 
 
