@@ -25,7 +25,7 @@ struct List{
         return head == nullptr;
     }
 
-    int length(){ // O(1)
+    int size(){ // O(1)
         return len;
     }
 
@@ -103,7 +103,7 @@ int main(){
         if(ope == 2)
             A -> erase(y);
 
-        cout << A -> length() << '\n';
+        cout << A -> size() << '\n';
 
         A -> print();
     }
