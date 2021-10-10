@@ -27,12 +27,12 @@ struct Queue{
         return len;
     }
 
-    int front(){
-        return head -> value;
+    Node front(){
+        return *head;
     }
 
-    int back(){
-        return end -> value;
+    Node back(){
+        return *end;
     }
 
     void push_back(int x){ // O(1)
@@ -87,15 +87,12 @@ int main(){
     Q -> push_back(10);
 
     cout << Q -> size() << '\n';
-    cout << Q -> front() << " " << Q -> back() << '\n';
-    Q -> pop_front();
-    Q -> pop_front();
+    cout << Q -> front().value << " " << Q -> back().value << '\n';
     Q -> pop_front();
     Q -> pop_front();
     
     cout << Q -> size() << '\n';
-    cout << Q -> front() << " " << Q -> back() << '\n';
-
+    cout << Q -> front().value << " " << Q -> back().value << '\n';
     return 0;
 
 
