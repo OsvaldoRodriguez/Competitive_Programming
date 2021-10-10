@@ -3,24 +3,24 @@
 // source 
 // https://github.com/OsvaldoRodriguez/Competitive_Programming/blob/master/Contests/Uva/12100%20Queue%20implemented.cpp
 
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
 struct Node{
-    int value;
+    int first, second;
     Node* next;
-    Node(): value(0), next(nullptr){}
-    Node(int x): value(x), next(nullptr){}
+    Node(): first(0), second(0), next(nullptr){}
+    Node(int x, int y): second(y), first(x), next(nullptr){}
     
     Node(Node *A){
-        value = A -> value;
+        first = A -> first;
+        second  = A -> second;
         next = A -> next;
     }
 
     void mostrar(){
-        cout << "(" << value << ")";
+        cout << "(" << first << ", " << second << ")";
     }
 };
 
@@ -81,34 +81,30 @@ struct Queue{
     
 };
 
-
 int main(){
-    // create list
-
-    ios_base::sync_with_stdio();
-    cin.tie(0);
-    cout.tie(0);
 
     Queue *Q = new Queue();
-    Q -> push(new Node(1));
-    Q -> push(new Node(3));
-    Q -> push(new Node(4));
-    Q -> push(new Node(1));
-    Q -> push(new Node(10));
-    Q -> push(new Node(100));
-    Q -> push(new Node(121));
+    Q -> push(new Node(1, 2));
+    Q -> push(new Node(3, 2));
+    Q -> push(new Node(4, 1));
+    Q -> push(new Node(1, 10));
+    Q -> push(new Node(10, 2));
+    Q -> push(new Node(100, 8));
+    Q -> push(new Node(121, 49));
 
+
+    // cuando se crea  el nodo antes, se envia direccion
+
+    Node cur = new Node(4, 5);
+    Q -> push(&cur);
 
     cout << Q -> size() << '\n';
-    cout << Q -> front().value << " " << Q -> back().value << '\n';
+    cout << Q -> front().first << " " << Q -> back().first << '\n';
     Q -> pop();
     Q -> pop();
     
     cout << Q -> size() << '\n';
-    cout << Q -> front().value << " " << Q -> back().value << '\n';
+    cout << Q -> front().first << " " << Q -> back().first << '\n';
     
     Q -> print();
-    return 0;
-
-
 }
