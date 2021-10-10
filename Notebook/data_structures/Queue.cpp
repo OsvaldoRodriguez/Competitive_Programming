@@ -40,7 +40,7 @@ struct Queue{
         return *end;
     }
     // puntero Node
-    void push_back(Node *x){ // O(1)
+    void push(Node *x){ // O(1)
         if(empty()){
             head = new Node(x);
             end = head;
@@ -86,13 +86,13 @@ int main(){
     Queue *Q = new Queue();
 
 
-    Q -> push_back(new Node(1));
-    Q -> push_back(new Node(3));
-    Q -> push_back(new Node(4));
-    Q -> push_back(new Node(1));
-    Q -> push_back(new Node(10));
-    Q -> push_back(new Node(100));
-    Q -> push_back(new Node(121));
+    Q -> push(new Node(1));
+    Q -> push(new Node(3));
+    Q -> push(new Node(4));
+    Q -> push(new Node(1));
+    Q -> push(new Node(10));
+    Q -> push(new Node(100));
+    Q -> push(new Node(121));
 
 
     cout << Q -> size() << '\n';
