@@ -1,3 +1,9 @@
+// test problem uva 12100
+
+// source 
+// https://github.com/OsvaldoRodriguez/Competitive_Programming/blob/master/Contests/Uva/12100%20Queue%20implemented.cpp
+
+
 #include <bits/stdc++.h>
 
 using namespace std;
