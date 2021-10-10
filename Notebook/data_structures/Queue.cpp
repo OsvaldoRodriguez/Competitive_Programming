@@ -54,7 +54,7 @@ struct Queue{
     }
 
 
-    void pop_front(){
+    void pop(){
         if(not empty()){
             Node* currentNode = head;
             head = currentNode -> next;
@@ -95,8 +95,8 @@ int main(){
 
     cout << Q -> size() << '\n';
     cout << Q -> front().value << " " << Q -> back().value << '\n';
-    Q -> pop_front();
-    Q -> pop_front();
+    Q -> pop();
+    Q -> pop();
     
     cout << Q -> size() << '\n';
     cout << Q -> front().value << " " << Q -> back().value << '\n';
