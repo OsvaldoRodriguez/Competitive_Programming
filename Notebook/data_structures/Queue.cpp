@@ -84,8 +84,6 @@ int main(){
     cout.tie(0);
 
     Queue *Q = new Queue();
-
-
     Q -> push(new Node(1));
     Q -> push(new Node(3));
     Q -> push(new Node(4));
