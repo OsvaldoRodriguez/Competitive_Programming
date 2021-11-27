@@ -1,30 +1,8 @@
 #include <bits/stdc++.h>
-#define FIN         ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-#define ii          pair<int,int>
-#define F           first
-#define S           second
-#define pb          push_back
-#define all(x)      (x).begin(),(x).end()
-#define rall(x)     (x).rbegin(),(x).rend()
-#define fore(i,a,b) for(int i = a;i < b; i+= 1)
-#define forr(i,a)   for(int i = a; i >= 0; i--)
-#define fori(i,m)   for(auto i = m.begin(); i != m.end(); i++) 
-#define w(t)        while(t--)
-#define sz(s)       int(s.size())
-#define cls(a,car)  memset(a,car,sizeof (a))
-#define db(x)       cerr << #x << " is " << x << '\n'
-#define FI          freopen("input.txt", "r", stdin)
-#define FO          freopen("output.txt", "w", stdout)
-#define EjecuteTime cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n"
-#define angle(x)    double(x * acos(-1) / 180.0)
 using namespace std;
 typedef long long   ll;
-typedef vector<int> vi;
-typedef vector<ii>  vii;
 const int N = 2e5 + 5;
 const ll mod = 1e9 + 7;
-const double E = 1e-7;
-const int INF = 1e2;
 
 /*
 Complexity O(V^2 * E)
@@ -45,14 +23,14 @@ struct Dinic{
     Dinic(){}
     Dinic(int n, int s, int t): n(n), dis(n), block(n), s(s), t(t), G(n){}
     void addEdge(int u, int v, ll cap){
-        G[u].pb((Edge){v, sz(G[v]), cap, 0});
-        G[v].pb((Edge){u, sz(G[u]) - 1, 0, 0});
+        G[u].push_back((Edge){v, (int) G[v].size(), cap, 0});
+        G[v].push_back((Edge){u, (int) G[u].size() - 1, 0, 0});
     }
     bool bfs(){
-        fill(all(dis), -1);
+        fill(dis.begin(), dis.end(), -1);
         dis[s] = 0;
-        queue<int> q;q.push(s);
-        while(sz(q)){
+        queue<int> q; q.push(s);
+        while(q.size()){
             int u = q.front();q.pop();
             for(auto &e: G[u]){
                 int v = e.to;
@@ -66,9 +44,9 @@ struct Dinic{
     }
     ll dfs(int u, ll f){
         if(u == t)return f;
-        for(auto &i = block[u]; i < sz(G[u]); i++){
+        for(auto &i = block[u]; i < (int) G[u].size(); i++){
             Edge &e = G[u][i];
-            if(e.cap <= e.flow)continue;
+            if(e.cap <= e.flow) continue;
             int v = e.to;
             if(dis[v] == dis[u] + 1){
                 ll cur = dfs(v, min(f, e.cap - e.flow));
@@ -84,7 +62,7 @@ struct Dinic{
     ll max_flow(){
         ll ans = 0;
         while(bfs()){
-            fill(all(block), 0);
+            fill(block.begin(), block.end(), 0);
             while(ll _cur = dfs(s, LLONG_MAX))
                 ans += _cur;
         }
@@ -112,12 +90,6 @@ void solve(){
     }
 }
 int main(){
-    FIN;
-    int t = 1;
-    //cin >> t;
-    for(int i = 1; i <= t; i++){
-        solve();
-    }
-    EjecuteTime;
+    solve();
     return 0;
 }  
