@@ -107,6 +107,7 @@ int main(){
 
         A -> print();
     }
+    return 0;
 
 
 }
