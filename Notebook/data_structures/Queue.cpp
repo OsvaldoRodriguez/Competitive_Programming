@@ -107,4 +107,5 @@ int main(){
     cout << Q -> front().first << " " << Q -> back().first << '\n';
     
     Q -> print();
+    return 0;
 }
