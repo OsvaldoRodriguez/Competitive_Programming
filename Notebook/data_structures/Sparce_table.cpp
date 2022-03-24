@@ -18,6 +18,7 @@ void build(){
     for(int i = 0; i < n; i++)
         ST[0][i] = A[i];
     for(int i = 1; (1 << i) <= n; i++){// i <= log_2(n)
+        // j + (1 << i) - 1 el rango que cubre tiene que ser menor a n 
         for(int j = 0; j < n - (1 << i) + 1; j++){
             int a = j;
             int b = j + (1 << (i - 1));
