@@ -21,11 +21,10 @@ int main(){
     I: -inf  1    2    4    5
     id: 0    1    2    3    4    5    6    7    8    9
     */
-
+    // strictly crecient
     vector<int> I(1, -1e9);
     for(int i = 0; i < n; i++){
-        // lower_bound -> no-decrecient
-        // uper_bound -> crecient
+        
         int pos = lower_bound(I.begin(), I.end(), v[i]) - I.begin();
         if(pos == (int) I.size())
             I.push_back(v[i]);
