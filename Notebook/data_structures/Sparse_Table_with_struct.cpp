@@ -3,6 +3,14 @@ using namespace std;
 const int N = 1e5 + 100;
 typedef  long long ll;
 
+/*
+Complextity
+Space: 
+    build   ->  O(log(n) * n)
+Time:
+    build   ->  O(log (n) * n)
+    query   -> O(1) 
+*/
 struct SparseTable{
     int N_MAX;
     int LOG;
