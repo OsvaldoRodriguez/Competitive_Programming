@@ -170,10 +170,10 @@ struct HLD{
             // siempre sube U
             int colorU = where[u];
             if(colorU == colorV){
-                return ans + Tree.get(chainIndex[v], chainIndex[u]);
+                return ans = f(ans, Tree.get(chainIndex[v], chainIndex[u]));
             }
             int hu = head[colorU];
-            ans += Tree.get(chainIndex[hu], chainIndex[u]);
+            ans = f(ans, Tree.get(chainIndex[hu], chainIndex[u]));
             u = parent[hu]; 
         }
         return ans;
@@ -181,12 +181,21 @@ struct HLD{
 
     ll get(int u, int v){
         int L = lca(u, v);
-        // cout << L << " " << u <<  " " << v << endl;
-        return query(u, L) + query(v, L) - query(L, L); // estamos sumando el lca dos veces
+        ll ans = f(query(u, L), query(v, L));
+        ans = finv(ans, query(L, L)); // como el lca suma dos veces se quita una vez con el inverso
+        return ans;
     }
 
     void update(int u, int val){
         Tree.update(chainIndex[u], val);
+    }
+
+    ll f(ll a, ll b){
+        return a + b;
+    }
+
+    ll finv(ll a, ll b){
+        return a - b;
     }
 
 };
