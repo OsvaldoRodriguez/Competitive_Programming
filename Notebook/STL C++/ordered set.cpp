@@ -17,7 +17,7 @@ const double eps = 1e-9;
 // greater<type>  prioridad mayor
 // add equal<type>  less_equal or greater_equal // multiset
 // 
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 int di[] = {1, 0, 0, -1}, dj[] = {0, -1, 1, 0};
 string dir = "DLRU";
 //**********************************************************************
@@ -26,13 +26,14 @@ string dir = "DLRU";
 
 void solve(){
     ordered_set s;
+    s.insert(-10);
     s.insert(3);
     s.insert(4);
     s.insert(4);
-    s.insert(-10);
+    s.insert(10);
+
     for(auto i : s)
         cout << i << endl;
-    cout << (s.find(4) != s.end() ? "ESTA" : "NO ESTA") << endl;
 
     // find_by_order(k) // retorna el elemento en la posicion k en el set (index 0)
     auto cur = s.find_by_order(10);
@@ -43,6 +44,32 @@ void solve(){
 
     int aux = s.order_of_key(-100);
     cout << "cantidad " << aux << "\n";
+
+
+    // para buscar (funciona en set y multiset)
+    int value = 4;
+    // encontramos la posicion donde deberia estar  el elemento value
+    int idx = s.order_of_key(value);
+    cout << idx << " pos\n";
+    // verificamos si en esa posicion esta el elemento value
+    cout << (*s.find_by_order(idx) == value ? "SI ESTA" : "NO ESTA") << endl;
+
+    // para eliminar
+    // funciona en set y multiset
+    value = 3;
+    idx = s.order_of_key(value);
+    cout << idx << " pos delete\n";
+
+    if(*s.find_by_order(idx) == value){ // esta el elemeneto
+        s.erase(s.find_by_order(idx));
+    }else{
+        cout << "no existe\n";
+    }
+    
+    cout << "set despues de eliminar\n";
+     for(auto i : s)
+        cout << i << endl;
+
 
 
 }   
