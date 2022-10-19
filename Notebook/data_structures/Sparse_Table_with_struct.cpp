@@ -37,7 +37,18 @@ struct SparseTable{
             }
         }
     }
-
+    
+    int query_log_n(int L, int R){
+        int len = R - L + 1;
+        int ans = 1e9;
+        for(int i = LOG; i >= 0; i--){
+            if((1 << i) & len){
+                ans = f(ans, ST[i][L]);
+                L += (1 << i);
+            }
+        }
+        return ans;
+    }
     int query(int L, int R){
         int len = R - L + 1;
         int log = 31 - __builtin_clz(len);
