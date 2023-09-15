@@ -1,3 +1,5 @@
+// test convolucion  (https://judge.yosupo.jp/submission/161564)
+// test inver (https://judge.yosupo.jp/submission/161577)
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long ll;
@@ -124,7 +126,7 @@ poly add(poly &a, poly &b){
     while(ans.size() > 1 && !ans.back()) ans.pop_back();
     return ans;
 }
-
+// where b is equal b.size() - 1
 poly invert(poly &b, int d){
     poly c = {inv(b[0])};
     while((int)c.size() <= d){
