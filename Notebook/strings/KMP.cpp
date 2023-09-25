@@ -34,6 +34,24 @@ vector<int> get_match(string &t, string &p){//O(p + t)
 }
 
 /*
+ans[i] = count all occurences for each preffix in s 
+phi[i] is equal to preffix and suffix 
+then phi[phi[i] - 1] is other string than is preffix and suffix
+the we need to calculate phi[phi[i] - 1] then the index will be zero.
+*/
+vector<int> count_preffix(vector<int> &phi){
+    int n = phi.size();
+    vector<int> ans(n + 1);
+    for (int i = 0; i < n; i++)
+        ans[phi[i]]++;
+    for (int i = n - 1; i > 0; i--)
+        ans[phi[i - 1]] += ans[i];
+    // count the preffix original
+    for (int i = 0; i <= n; i++)
+        ans[i]++;
+    return ans;
+}
+/*
 otra manera de encontrar ocurrencias de p en t es
 cad = p + "#" + t y lanzar get_phi
 si en phi(prefijos y sufijos maximos de [0, i]) existe phi[i] == sz(p), para todo j [sz(p) + 1, sz(phi)]
