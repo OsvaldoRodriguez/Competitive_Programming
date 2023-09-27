@@ -19,3 +19,14 @@ t = texto
 p = patron
 "#" = no pertenece al alfabeto
 */
+
+vector<int> counting_preffix(string &str){
+    int n = str.size();
+    vector<int> ans(n + 1);
+    vector<int> z = z_function(str);
+
+    for(int x : z) ans[0]++, ans[x + 1]--;
+    for(int i = 1 ;i <= n; i++) ans[i] += ans[i - 1];
+    for(int i = 1; i <= n; i++) ans[i]++;
+    return ans;
+}
