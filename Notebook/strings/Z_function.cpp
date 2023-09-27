@@ -30,3 +30,25 @@ vector<int> counting_preffix(string &str){
     for(int i = 1; i <= n; i++) ans[i]++;
     return ans;
 }
+
+
+// find all preffix than be palindromes
+// the idea es SS = S + S' (S' is reverse of S)
+// then if z[i] = k => if SS.size() - i == z[i] then palindrome
+// ignore all i < S.size() 
+vector<int> palindrome(string &str){
+    string str2 = str;
+    int n = str.size();
+    reverse(all(str2));
+    str += str2;
+    int n_new = str.size();
+    vector<int> z = z_function(str);
+    vector<int> ans(n + 1);
+    for(int i = n; i < n_new; i++){
+        int k = n_new - i; // preffix's length 
+        if(k == z[i]){
+            ans[z[i]] = 1;
+        }
+    }
+    return ans;
+}
