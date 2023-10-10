@@ -71,6 +71,19 @@ struct Dinic{
         }
         return 0;
     }
+
+    vector<pii> min_cut_edges(){
+        bfs();
+        vector<pii> edges;
+        for(int i = 0; i < G.size(); i++){
+            for(auto &e : G[i]){
+                if(e.flow == e.cap and e.cap > 0 and dis[i] != -1 and dis[e.to] == -1){
+                    edges.push_back({i, e.to});
+                }
+            }
+        }
+        return edges;
+    }
     ll max_flow(){
         ll ans = 0;
         while(bfs()){
