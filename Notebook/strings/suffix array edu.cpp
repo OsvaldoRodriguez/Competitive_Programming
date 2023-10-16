@@ -48,6 +48,7 @@ struct SuffixArray{
     vector<int> p; // for the answer
     vector<int> c; // for the classes
     vector<int> LCP;
+    vector<vector<int>> table; // for lenghts
     void suffix_array(){
         cnt.clear();
         p.clear();
@@ -80,6 +81,7 @@ struct SuffixArray{
         str = s;
         str += '$';
         n = str.size();
+
         p.assign(n, 0); // for the answer
         c.assign(n, 0); // for the classes
         // base case
@@ -98,6 +100,7 @@ struct SuffixArray{
             else
                 c[p[i]] = c[p[i - 1]] + 1;
         }
+        table.push_back(c);
         // we need iterate over all k while (1 << k) < n
         int k = 0;
         while((1 << k) < n){
@@ -119,6 +122,7 @@ struct SuffixArray{
                     c_new[p[i]] = c_new[p[i - 1]] + 1;
             }
             c = c_new;
+            table.push_back(c);
             k++;
         }
 
@@ -140,14 +144,41 @@ struct SuffixArray{
         }
         return LCP;
     }
+    // [l, r]
+    pair<int, int> query(int l, int r){
+        int lev = 31 - __builtin_clz(r - l + 1);  
+        return make_pair(table[lev][l], table[lev][r - (1 << lev) + 1]);  
+    }
+    // [l1, r1] , [l2, r2]
+    bool comp(int l1, int r1, int l2, int r2){ 
+        int siz = min(r1 - l1, r2 - l2);
+        pair<int, int> le = query(l1, l1 + siz), ri = query(l2, l2 + siz);
+        if(le == ri)
+            return r1 - l1 < r2 - l2;
+        return le < ri;
+    }
+
+    ll count_substring(){
+        ll ans = p.size() - p[1] - 1; // primer substring
+        for(int i = 2; i < LCP.size(); i++){
+            int len = p.size() - p[i] - 1 - LCP[i];
+            ans += len;
+        }
+        return ans;
+    }
 
     void mostrar(){
         for(int i = 0; i < n; i++){
             cout << p[i] << " " << LCP[i] << ' ' << str.substr(p[i], n - p[i]) << "\n";
         }
+        for(int i = 0; i < table.size(); i++){
+            for(int j = 0; j < n; j++)
+                cout << table[i][j] << " ";
+            cout << endl;
+        }
+        
     }
 };
-
 
 void solve(){
     string s;
